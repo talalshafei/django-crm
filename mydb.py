@@ -6,8 +6,8 @@ dataBase = mysql.connector.connect(
     password = 'talal2002', 
 )
 
-cursorObject = dataBase.cursor()
+# cursorObject = dataBase.cursor()
 
-cursorObject.execute("CREATE DATABASE elderco")
+# cursorObject.execute("CREATE DATABASE elderco")
 
-print("All done!")
+# print("All done!")
