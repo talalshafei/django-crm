@@ -35,7 +35,7 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = SignUpForm(request.POST or None)
         if form.is_valid():
             form.save()
 
@@ -47,7 +47,10 @@ def register_user(request):
             login(request, user)
 
             messages.success(request, "You signed up successfully")
-            return redirect("home")
+        else:
+            messages.success(request, "Something went wrong.. try again")
+
+        return redirect("home")
 
     else:
         form = SignUpForm()
@@ -82,8 +85,7 @@ def add_record(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             if form.is_valid():
-                add_record = form.save()
-                messages.success(request, 'Record added successfully..')
+                form.save()
                 return redirect('home')
             
 
